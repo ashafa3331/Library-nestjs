@@ -1,0 +1,29 @@
+###
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "Aahmed",
+    "lastName": "Abuari",
+    "email": "ashafa3443333@gamail.com",
+    "password":"thsiPass"
+}
+
+###
+GET http://localhost:3000/user/d7f6f6c7-b59a-4fcd-984d-93fbf6a4436c
+
+###
+GET   http://localhost:3000/user
+
+###
+DELETE  http://localhost:3000/user/9d28308d-046c-45f5-b437-44dfd3cc6635
+
+###
+PATCH   http://localhost:3000/user/c49971da-f947-4f93-86d7-d4ec1a88459b
+Content-Type: application/json
+
+{
+    "firstName":"buhari ii",
+    "lastName":"buhari updar"
+}
+
