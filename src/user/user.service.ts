@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -28,7 +28,20 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto){
-    return await this.userRepository.update(id, updateUserDto);
+     
+    try{
+       await this.userRepository.update(id, updateUserDto);
+
+       const updatedUser = this.userRepository.findOne({where:{id}});
+       delete (await updatedUser).password;
+
+       return updatedUser;
+
+    }catch(error){
+      throw new ServiceUnavailableException("fail to update user");
+    }
+    
+
   }
 
   async remove(id: string): Promise<void> {

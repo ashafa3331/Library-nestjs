@@ -1,4 +1,6 @@
+import { Exclude } from "class-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import * as bcrypt from 'bcryptjs';
 
 @Entity()
 export class User {
@@ -16,8 +18,15 @@ export class User {
     email:string;
 
     @Column()
+    @Exclude()
     password:string;
 
 
+    async validatePassword?(password: string): Promise<boolean> {
+        const [salt, hashedPassword] = this.password.split('-');
+        const compareHash = await bcrypt.hash(password, salt);
+    
+        return compareHash === hashedPassword;
+      }
 
 }
