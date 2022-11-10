@@ -1,6 +1,8 @@
 import { Exclude } from "class-transformer";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import * as bcrypt from 'bcryptjs';
+import { Todo } from "src/todo/entities/todo.entity";
+import { Profile } from "src/profile/entity/profile.entity";
 
 @Entity()
 export class User {
@@ -20,6 +22,12 @@ export class User {
     @Column()
     @Exclude()
     password:string;
+
+    @OneToMany(() => Todo, (todo)=>todo.user)
+    todos: Todo[];
+
+    @OneToOne(type => Profile) @JoinColumn() 
+    profile: Profile;
 
 
     async validatePassword?(password: string): Promise<boolean> {

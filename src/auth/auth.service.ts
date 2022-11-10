@@ -38,6 +38,8 @@ export class AuthService {
 
         if(isPasswordMatch != true) throw new UnauthorizedException("creadentials not valid");
         
+        
+        
         return this.signinToken(user.id,user.email);
       }
 
@@ -45,11 +47,11 @@ export class AuthService {
        async signinToken(id:string, email:string):Promise<{access_token:string}>{
 
         const payload={
-          sub: id,
+        id,
           email,
         };
 
-        const token =  await this.jwt.signAsync(payload,{expiresIn:"15m",secret:"aaaaa11111^^%GGG"});
+        const token =  await this.jwt.sign(payload,{expiresIn:"15m",secret:"aaaaa11111^^%GGG"});
 
         return {access_token: token };
       }

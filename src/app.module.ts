@@ -5,17 +5,23 @@ import { AppService } from './app.service';
 import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { TodoModule } from './todo/todo.module';
+import { Todo } from './todo/entities/todo.entity';
+import { ProfileModule } from './profile/profile.module';
+import { Profile } from './profile/entity/profile.entity';
 
 @Module({
   imports: [UserModule,
   TypeOrmModule.forRoot({
     type:'sqlite',
     database: 'school',
-    entities:[User],
+    entities:[User,Todo,Profile],
     synchronize: true,
   }),
   UserModule,
-  AuthModule
+  AuthModule,
+  TodoModule,
+  ProfileModule
   ],
   controllers: [AppController],
   providers: [AppService],

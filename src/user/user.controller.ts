@@ -18,7 +18,7 @@ export class UserController {
   @UseGuards(JwtGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
-  findOne(@GetUser('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
@@ -28,6 +28,7 @@ export class UserController {
     return this.userService.update(id, updateUserDto);
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   remove(@GetUser('id') id: string) {
     return this.userService.remove(id);

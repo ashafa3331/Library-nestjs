@@ -24,7 +24,7 @@ export class UserService {
   }
 
   async findOne(id:string):Promise<User> {
-    return await this.userRepository.findOne({where:{id}});
+    return await this.userRepository.findOne({where:{id},relations:['todos','profile']});
   }
 
   async update(id: string, updateUserDto: UpdateUserDto){
