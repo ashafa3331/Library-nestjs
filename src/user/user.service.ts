@@ -20,7 +20,8 @@ export class UserService {
 
   async findAll() {
 
-    return await this.userRepository.find();
+     return  await this.userRepository.find();
+      
   }
 
   async findOne(id:string):Promise<User> {

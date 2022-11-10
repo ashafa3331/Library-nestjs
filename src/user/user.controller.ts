@@ -18,7 +18,7 @@ export class UserController {
   @UseGuards(JwtGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@GetUser('id') id: string) {
     return this.userService.findOne(id);
   }
 

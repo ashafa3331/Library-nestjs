@@ -24,12 +24,7 @@ export class ProfileService {
     console.log(id);
     
    const user =  await this.userRepository.findOne({where:{id}});
-   //console.log(user);
-
-   //console.log(user.email);
    
-   
-
    if(!user){
     throw new HttpException('user not found',HttpStatus.BAD_REQUEST);
    }

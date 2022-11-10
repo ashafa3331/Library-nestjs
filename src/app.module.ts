@@ -13,8 +13,13 @@ import { Profile } from './profile/entity/profile.entity';
 @Module({
   imports: [UserModule,
   TypeOrmModule.forRoot({
-    type:'sqlite',
-    database: 'school',
+    type: 'postgres',
+
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'password',
+      database: 'school',
     entities:[User,Todo,Profile],
     synchronize: true,
   }),
