@@ -15,11 +15,11 @@ import { Profile } from './profile/entity/profile.entity';
   TypeOrmModule.forRoot({
     type: 'postgres',
 
-      host: 'localhost',
+      host: process.env.DB_HOST,
       port: 5432,
-      username: 'postgres',
-      password: 'password',
-      database: 'school',
+      username: process.env.POSTGRESS_USER,
+      password: process.env.POSTGRESS_PASSWORD,
+      database: process.env.POSTGRESS_DB,
     entities:[User,Todo,Profile],
     synchronize: true,
   }),
