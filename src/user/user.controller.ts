@@ -5,11 +5,13 @@ import { AuthGuard } from '@nestjs/passport';
 import { JwtGuard } from 'src/auth/guard/jwt.guard';
 import { GetUser } from 'src/auth/decorator/get-user.decorator';
 
+
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   findAll() {
     return this.userService.findAll();
