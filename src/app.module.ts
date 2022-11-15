@@ -16,7 +16,7 @@ import { Profile } from './profile/entity/profile.entity';
     type: 'postgres',
 
       host: process.env.DB_HOST,
-      port: 5432,
+      port: 5432 ,
       username: process.env.POSTGRESS_USER,
       password: process.env.POSTGRESS_PASSWORD,
       database: process.env.POSTGRESS_DB,
